@@ -9,9 +9,11 @@
                     heigth="64px"
                 />
             </v-card-title>
-            <div class="titleText primary--text text--lighten-1 px-8">Welcome, please sign in</div>
-            <v-card-text class="px-8">
-                <v-form lazy-validation ref="loginForm">
+            <div class="titleText primary--text text--lighten-1 px-8">
+                Welcome, please sign in
+            </div>
+            <v-card-text class="px-8" >
+                <v-form lazy-validation ref="loginForm" v-if="!forget">
                     <v-row no-gutters>
                         <v-col cols="12">
                             <v-text-field
@@ -48,26 +50,45 @@
                                 <span>Sign in</span>
                             </v-btn>
                         </v-col>
-                        <v-col cols="12" class="text-center py-4 forgetpassword orange--text"
-                            >
-                            <span class="pointer">Forgot your password?</span></v-col
+                        <v-col
+                            cols="12"
+                            class="text-center py-4 forgetpassword orange--text"
+                        >
+                            <span class="pointer" @click="forget = true"
+                                >Forgot your password?</span
+                            ></v-col
                         >
                     </v-row>
                 </v-form>
+
+                <forget v-on:changevalue="toggleComponent($event)" v-else />
             </v-card-text>
+             <!-- <v-card-text>
+                <setpassword v-on:toggle="togglepasswordComponent($event)"/>
+
+
+             </v-card-text> -->
+
         </v-card>
     </div>
 </template>
 <script>
 import RULES from "@/common/fieldRules";
 import { mapActions } from "vuex";
+import forget from "./forget.vue";
+// import Setpassword from './setpassword.vue';
 
 export default {
     name: "login",
+    components: { forget
+    //  Setpassword
+      },
     data() {
         return {
             rules: RULES,
+            forget: false,
             showPassword: false,
+            setPassword:false,
             password: "",
             email: "",
         };
@@ -77,11 +98,18 @@ export default {
         ...mapActions({
             showSnackbar: "snackBar/showSnackbar",
         }),
+        toggleComponent(e) {
+            this.forget = e;
+        },
+        togglepasswordComponent(e){
+            this.setPassword = e;
+
+        },
         submit() {
             this.showSnackbar({
-                    text: "API calling",
-                    color: "red",
-                });
+                text: "API calling",
+                color: "red",
+            });
             // if (this.$refs.loginForm.validate()) {
             //     console.log("Email", this.email);
             //     console.log("Password", this.password);
