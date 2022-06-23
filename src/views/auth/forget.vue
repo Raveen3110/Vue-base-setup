@@ -84,7 +84,7 @@ export default {
                         this.resendBtn = false;
                     }
                 }
-            }, 1000);
+            }, 1100);
         },
     },
 };

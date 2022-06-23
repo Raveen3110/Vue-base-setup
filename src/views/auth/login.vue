@@ -9,10 +9,10 @@
                     heigth="64px"
                 />
             </v-card-title>
-            <div class="titleText primary--text text--lighten-1 px-8">
+            <div class="titleText primary--text px-8">
                 Welcome, please sign in
             </div>
-            <v-card-text class="px-8" >
+            <v-card-text class="px-8">
                 <v-form lazy-validation ref="loginForm" v-if="!forget">
                     <v-row no-gutters>
                         <v-col cols="12">
@@ -63,12 +63,12 @@
 
                 <forget v-on:changevalue="toggleComponent($event)" v-else />
             </v-card-text>
-             <!-- <v-card-text>
+            <!-- <v-card-text>
+                
                 <setpassword v-on:toggle="togglepasswordComponent($event)"/>
 
 
              </v-card-text> -->
-
         </v-card>
     </div>
 </template>
@@ -80,15 +80,16 @@ import forget from "./forget.vue";
 
 export default {
     name: "login",
-    components: { forget
-    //  Setpassword
-      },
+    components: {
+        forget,
+        //  Setpassword
+    },
     data() {
         return {
             rules: RULES,
             forget: false,
             showPassword: false,
-            setPassword:false,
+            setPassword: false,
             password: "",
             email: "",
         };
@@ -101,9 +102,8 @@ export default {
         toggleComponent(e) {
             this.forget = e;
         },
-        togglepasswordComponent(e){
+        togglepasswordComponent(e) {
             this.setPassword = e;
-
         },
         submit() {
             this.showSnackbar({
