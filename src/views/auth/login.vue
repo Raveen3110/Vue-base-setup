@@ -1,95 +1,67 @@
 <template>
-    <div class="authContent">
-        <v-card class="cardContent">
-            <v-card-title class="d-flex justify-center" >
-                <lottie
-                :options="defaultOption"
-                
-                
-                />
-                <!-- :width="100"
-                :height="100" -->
-                
-                <!-- class="mb-6" -->
-            </v-card-title>
-            <div class="titleText primary--text px-8" >
-                Welcome, please sign in
-            </div>
-            <v-card-text class="px-8">
-                <v-form lazy-validation ref="loginForm" v-if="!forget">
-                    <v-row no-gutters>
-                        <v-col cols="12">
-                            <v-text-field
-                                v-model="email"
-                                label="Email"
-                                :rules="[rules.required, rules.email]"
-                                height="42px"
-                                color=""
-                                type="email"
-                                outlined
-                            ></v-text-field>
-                        </v-col>
-                        <v-col cols="12">
-                            <v-text-field
-                                v-model="password"
-                                label="Password"
-                                height="42px"
-                                :rules="[rules.required]"
-                                :type="!showPassword ? 'password' : 'text'"
-                                :append-icon="
-                                    showPassword ? 'mdi-eye' : 'mdi-eye-off'
-                                "
-                                @click:append="showPassword = !showPassword"
-                                outlined
-                            ></v-text-field>
-                        </v-col>
-                        <v-col cols="12" class="text-center">
-                            <v-btn
-                                dark
-                                class="primary buttonClass text-capitalize"
-                                height="48px"
-                                @click="submit"
-                            >
-                                <span>Sign in</span>
-                            </v-btn>
-                        </v-col>
-                        <v-col
-                            cols="12"
-                            class="text-center py-4 forgetpassword orange--text"
+    <div>
+        <div class="titleText primary--text px-8">Welcome, please sign in</div>
+        <v-card-text class="px-8">
+            <v-form lazy-validation ref="loginForm" v-if="!forget">
+                <v-row no-gutters>
+                    <v-col cols="12">
+                        <v-text-field
+                            v-model="email"
+                            label="Email"
+                            :rules="[rules.required, rules.email]"
+                            height="42px"
+                            color=""
+                            type="email"
+                            outlined
+                        ></v-text-field>
+                    </v-col>
+                    <v-col cols="12">
+                        <v-text-field
+                            v-model="password"
+                            label="Password"
+                            height="42px"
+                            :rules="[rules.required]"
+                            :type="!showPassword ? 'password' : 'text'"
+                            :append-icon="
+                                showPassword ? 'mdi-eye' : 'mdi-eye-off'
+                            "
+                            @click:append="showPassword = !showPassword"
+                            outlined
+                        ></v-text-field>
+                    </v-col>
+                    <v-col cols="12" class="text-center">
+                        <v-btn
+                            dark
+                            class="primary buttonClass text-capitalize"
+                            height="48px"
+                            @click="submit"
                         >
-                            <span class="pointer" @click="forget = true"
-                                >Forgot your password?</span
-                            ></v-col
-                        >
-                    </v-row>
-                </v-form>
+                            <span>Sign in</span>
+                        </v-btn>
+                    </v-col>
+                    <v-col
+                        cols="12"
+                        class="text-center py-4 forgetpassword orange--text"
+                    >
+                        <span class="pointer" @click="forget = true"
+                            >Forgot your password?</span
+                        ></v-col
+                    >
+                </v-row>
+            </v-form>
 
-                <forget v-on:changevalue="toggleComponent($event)" v-else />
-            </v-card-text>
-            <!-- <v-card-text>
-                
-                <setpassword v-on:toggle="togglepasswordComponent($event)"/>
-
-
-             </v-card-text> -->
-        </v-card>
+            <forget v-on:changevalue="toggleComponent($event)" v-else />
+        </v-card-text>
     </div>
 </template>
 <script>
 import RULES from "@/common/fieldRules";
 import { mapActions } from "vuex";
 import forget from "./forget.vue";
-import Lottie from "vue-lottie";
-import * as logo from "@/assets/login-logo-1.json";
-
-// import Setpassword from './setpassword.vue';
-
 export default {
     name: "login",
     components: {
         forget,
-        lottie: Lottie,
-        //  Setpassword
     },
     data() {
         return {
@@ -99,7 +71,6 @@ export default {
             setPassword: false,
             password: "",
             email: "",
-            defaultOption: { animationData: logo.default, loop: 1 },
         };
     },
     computed: {},
@@ -114,10 +85,6 @@ export default {
             this.setPassword = e;
         },
         submit() {
-            // this.showSnackbar({
-            //     text: "API calling",
-            //     color: "red",
-            // });
             if (this.$refs.loginForm.validate()) {
                 console.log("Email", this.email);
                 console.log("Password", this.password);
@@ -131,11 +98,6 @@ export default {
 };
 </script>
 <style scoped>
-.authContent {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-}
 .cardContent {
     width: 459px;
     margin: 0;
@@ -164,5 +126,4 @@ export default {
     width: 250;
     height: 0 !important;
 }
-
 </style>

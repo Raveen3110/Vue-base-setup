@@ -1,21 +1,37 @@
 <template>
-    <div class="AuthLayoutContainer">
-        <login />
+    <div class="AuthLayoutContainer authContent">
+        <v-card class="cardContent">
+            <v-card-title class="d-flex justify-center">
+                <lottie :options="defaultOption" />
+            </v-card-title>
+            <v-card-text>
+                <router-view></router-view>
+            </v-card-text>
+        </v-card>
     </div>
 </template>
 <script>
-import login from "@/views/auth/login.vue";
+import Lottie from "vue-lottie";
+import * as logo from "@/assets/login-logo-1.json";
+
 export default {
-    components: { login },
+    components: { lottie: Lottie },
     name: "authlayout",
     data() {
-        return {};
+        return {
+            defaultOption: { animationData: logo.default, loop: 1 },
+        };
     },
     computed: {},
     methods: {},
 };
 </script>
 <style scoped>
+.authContent {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+}
 .AuthLayoutContainer {
     min-height: 100vh;
     background: linear-gradient(
@@ -28,5 +44,16 @@ export default {
     /* opacity: 0.5; */
     border-radius: 5px;
     background-size: cover;
+}
+.cardContent {
+    width: 459px;
+    margin: 0;
+    padding: 5px 25px;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.25);
+    border-radius: 20px !important;
 }
 </style>
