@@ -1,15 +1,18 @@
 <template>
     <div class="authContent">
         <v-card class="cardContent">
-            <v-card-title class="d-flex justify-center pt-10">
-                <img
-                    src="@/assets/wwtlogo.svg"
-                    alt=""
-                    width="250px"
-                    heigth="64px"
+            <v-card-title class="d-flex justify-center" >
+                <lottie
+                :options="defaultOption"
+                
+                
                 />
+                <!-- :width="100"
+                :height="100" -->
+                
+                <!-- class="mb-6" -->
             </v-card-title>
-            <div class="titleText primary--text px-8">
+            <div class="titleText primary--text px-8" >
                 Welcome, please sign in
             </div>
             <v-card-text class="px-8">
@@ -76,12 +79,16 @@
 import RULES from "@/common/fieldRules";
 import { mapActions } from "vuex";
 import forget from "./forget.vue";
+import Lottie from "vue-lottie";
+import * as logo from "@/assets/login-logo-1.json";
+
 // import Setpassword from './setpassword.vue';
 
 export default {
     name: "login",
     components: {
         forget,
+        lottie: Lottie,
         //  Setpassword
     },
     data() {
@@ -92,6 +99,7 @@ export default {
             setPassword: false,
             password: "",
             email: "",
+            defaultOption: { animationData: logo.default, loop: 1 },
         };
     },
     computed: {},
@@ -106,18 +114,18 @@ export default {
             this.setPassword = e;
         },
         submit() {
-            this.showSnackbar({
-                text: "API calling",
-                color: "red",
-            });
-            // if (this.$refs.loginForm.validate()) {
-            //     console.log("Email", this.email);
-            //     console.log("Password", this.password);
-            //     // this.showSnackbar({
-            //     //     message: "API calling",
-            //     //     color: "w",
-            //     // });
-            // }
+            // this.showSnackbar({
+            //     text: "API calling",
+            //     color: "red",
+            // });
+            if (this.$refs.loginForm.validate()) {
+                console.log("Email", this.email);
+                console.log("Password", this.password);
+                this.showSnackbar({
+                    text: "API calling",
+                    color: "green",
+                });
+            }
         },
     },
 };
@@ -152,4 +160,9 @@ export default {
     font-size: 13px;
     line-height: 48px;
 }
+.rect {
+    width: 250;
+    height: 0 !important;
+}
+
 </style>

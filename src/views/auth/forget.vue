@@ -40,7 +40,7 @@
                     class="text-center py-4 forgetpassword orange--text"
                 >
                     <span class="pointer" @click="goback"
-                        >Goto Sign In</span
+                        >Sign In</span
                     ></v-col
                 >
             </v-row>

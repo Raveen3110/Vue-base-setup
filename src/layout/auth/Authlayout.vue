@@ -20,9 +20,9 @@ export default {
     min-height: 100vh;
     background: linear-gradient(
         180deg,
-        rgba(230, 99, 26, 0.37) 65.11%,
-        rgba(255, 215, 192, 0.151897) 96.7%,
-        rgba(255, 255, 255, 0) 141.74%
+        rgba(44, 167, 164, 0.37) 10%,
+        rgba(180, 224, 223, 0.131891) 60%,
+        rgba(255, 255, 255, 0) 100%
     );
     mix-blend-mode: normal;
     /* opacity: 0.5; */
