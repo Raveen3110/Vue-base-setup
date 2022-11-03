@@ -9,13 +9,10 @@ export default new Vuetify({
             light: {
                 primary: {
                     base: "#2CA7A4",
-                    lighten1:'#F2FFFF;'
                 },
                 secondary: "#333333", // black for font
                 orange: "#FF7C1E",
-                
                 white: "#ffffff",
-                // error: '#b71c1c',
             },
             dark: {
                 primary: {
@@ -24,7 +21,6 @@ export default new Vuetify({
                 secondary: "#333333",
                 orange: "#FF7C1E",
                 white: "#ffffff",
-                // error: '#b71c1c',
             },
         },
     },

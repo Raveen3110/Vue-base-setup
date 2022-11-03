@@ -10,7 +10,6 @@
                             label="Email"
                             :rules="[rules.required, rules.email]"
                             height="42px"
-                            color=""
                             type="email"
                             outlined
                         ></v-text-field>
@@ -43,26 +42,22 @@
                         cols="12"
                         class="text-center py-4 forgetpassword orange--text"
                     >
-                        <span class="pointer" @click="forget = true"
+                        <span
+                            class="pointer"
+                            @click="$router.push({ name: 'forgot' })"
                             >Forgot your password?</span
                         ></v-col
                     >
                 </v-row>
             </v-form>
-
-            <forget v-on:changevalue="toggleComponent($event)" v-else />
         </v-card-text>
     </div>
 </template>
 <script>
 import RULES from "@/common/fieldRules";
 import { mapActions } from "vuex";
-import forget from "./forget.vue";
 export default {
     name: "login",
-    components: {
-        forget,
-    },
     data() {
         return {
             rules: RULES,
@@ -78,12 +73,6 @@ export default {
         ...mapActions({
             showSnackbar: "snackBar/showSnackbar",
         }),
-        toggleComponent(e) {
-            this.forget = e;
-        },
-        togglepasswordComponent(e) {
-            this.setPassword = e;
-        },
         submit() {
             if (this.$refs.loginForm.validate()) {
                 console.log("Email", this.email);

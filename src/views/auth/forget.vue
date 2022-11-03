@@ -29,8 +29,6 @@
                         :disabled="resendBtn"
                         @click="sendedLink"
                     >
-                        <!-- @click="newbtn?sendedLink:resendmail" -->
-
                         <span v-if="!newbtn">Send</span>
                         <span v-else>Resend</span>
                     </v-btn>
@@ -39,7 +37,7 @@
                     cols="12"
                     class="text-center py-4 forgetpassword orange--text"
                 >
-                    <span class="pointer" @click="goback"
+                    <span class="pointer" @click="$router.push({name:'login'})"
                         >Sign In</span
                     ></v-col
                 >
@@ -63,14 +61,10 @@ export default {
     },
     computed: {},
     methods: {
-        goback() {
-            this.$emit("changevalue", false);
-        },
         resendmail() {
             console.log("resend calling");
         },
         sendedLink() {
-            // this.$root.$refs.login.submitForm(this.loginDetail.phone);
             this.timer = 10;
             this.resendBtn = true;
             this.newbtn = true;
